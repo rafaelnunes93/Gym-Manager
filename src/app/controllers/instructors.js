@@ -17,11 +17,15 @@ module.exports = {
             limit,
             offset,
             callback(instructors){
-
-                const pagination = {
-                    total: Math.ceil(instructors[0].total/limit) ,
-                    page
-                }
+                let mathTotal =
+                instructors[0] == undefined
+                  ? 0
+                  : Math.ceil(instructors[0].total / limit);
+      
+              const pagination = {
+                total: mathTotal,
+                page
+              };
 
                 return res.render("instructors/index", { instructors,pagination,filter })
             }
